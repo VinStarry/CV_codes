@@ -4,3 +4,4 @@
 *.cbp
 **/CMakeCache.txt
 */mnist/
+**/.idea/
