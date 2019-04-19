@@ -5,6 +5,6 @@ find_package(opencv)
 
 include_directories(${OpenCV_INCLUDE_DIRS})
 set(CMAKE_CXX_STANDARD 11)
-set(SOURCE_FILES main.cpp)
+set(SOURCE_FILES main.cpp parse_mnist.cpp parse_mnist.h)
 add_executable(knn ${SOURCE_FILES})
 target_link_libraries(knn ${OpenCV_LIBS})
