@@ -24,22 +24,21 @@ int main() {
 
     /* Create a KNN model and train it */
     Ptr<ml::KNearest> knn_model = ml::KNearest::create();
-    knn_model->train(training_set, 0); // train this KNN model with training set
-    for (int K_value = 50; K_value <= 50; K_value++) {
+
+    for (int K_value = 1; K_value <= 30; K_value++) {
         knn_model->setDefaultK(K_value);  // set parameter k for the KNN
         knn_model->setIsClassifier(true);
+        knn_model->setAlgorithmType(cv::ml::KNearest::Types::BRUTE_FORCE);
+        knn_model->train(training_set, 0); // train this KNN model with training set
 
         /* Predict result */
         cv::Mat result_set;
-        knn_model->predict(test_set, result_set, 0);
+        knn_model->findNearest(test_set, knn_model->getDefaultK(), result_set);
 
         /* Calculate accuracy of the prediction */
-        int cnt{0};
+        int cnt = 0;
         for (int index = 0; index < test_parse.get_number_of_images(); index++) {
-            int predict_label = static_cast<int>(result_set.data[index]);
-            int actual_label = static_cast<int>(test_label_set.data[index]);
-
-            if (predict_label == actual_label)
+            if (static_cast<int32_t>(result_set.at<float>(index)) == test_label_set.at<int32_t>(index))
                 cnt++;
         }
 

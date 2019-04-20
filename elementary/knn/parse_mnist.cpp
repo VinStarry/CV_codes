@@ -36,7 +36,7 @@ bool parse_mnist::get_train_images_with_label_from_mnist(cv::Ptr<cv::ml::TrainDa
         }
 
         cv::Mat trainMat(ii.number_of_images, ii.number_of_rows * ii.number_of_cols, CV_32FC1);
-        cv::Mat labelMat(ii.number_of_images, 1, CV_32FC1);
+        cv::Mat labelMat(ii.number_of_images, 1, CV_32SC1);
 
         for (auto i = 0; i < ii.number_of_images; i++) {
             unsigned char block[ii.number_of_cols][ii.number_of_rows];
@@ -46,7 +46,7 @@ bool parse_mnist::get_train_images_with_label_from_mnist(cv::Ptr<cv::ml::TrainDa
             for (int col = 0; col < ii.number_of_cols; col++) {
                 for (int row = 0; row < ii.number_of_rows; row++) {
 //                    std::cout << static_cast<int>(block[col][row]) << "\t";
-                    trainMat.at<int32_t>(i, col * ii.number_of_rows + row) = static_cast<int32_t>(block[col][row]);
+                    trainMat.at<float>(i, col * ii.number_of_rows + row) = static_cast<float>(block[col][row]);
                 }
 //                std::cout << std::endl;
             }
@@ -99,7 +99,7 @@ bool parse_mnist::get_test_images_with_label_from_mnist(cv::Mat &testData, cv::M
         }
 
         testData = cv::Mat(ii.number_of_images, ii.number_of_rows * ii.number_of_cols, CV_32FC1);
-        testLabel = cv::Mat(ii.number_of_images, 1, CV_32FC1);
+        testLabel = cv::Mat(ii.number_of_images, 1, CV_32SC1);
 
         for (auto i = 0; i < ii.number_of_images; i++) {
             unsigned char block[ii.number_of_cols][ii.number_of_rows];
@@ -108,7 +108,7 @@ bool parse_mnist::get_test_images_with_label_from_mnist(cv::Mat &testData, cv::M
             label_in.read(reinterpret_cast<char *>(&label), sizeof(unsigned char));
             for (int col = 0; col < ii.number_of_cols; col++) {
                 for (int row = 0; row < ii.number_of_rows; row++) {
-                    testData.at<int32_t>(i, col * ii.number_of_rows + row) = static_cast<int32_t>(block[col][row]);
+                    testData.at<float>(i, col * ii.number_of_rows + row) = static_cast<float>(block[col][row]);
                 }
             }
             testLabel.at<int32_t>(i) = static_cast<int32_t>(label);
