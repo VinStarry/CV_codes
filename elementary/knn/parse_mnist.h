@@ -9,9 +9,8 @@
 #include <string>
 #include <fstream>
 #include <opencv2/opencv.hpp>
+#include <opencv2/ml.hpp>
 #include <vector>
-#include <set>
-#include <list>
 
 struct image_info {
     image_info() = default;
@@ -42,7 +41,7 @@ public:
 
     ~parse_mnist() = default;
 
-    bool get_all_images_from_mnist(std::vector<cv::Mat> &mat_container, std::vector<unsigned char> &lb_container);
+    bool get_all_images_from_mnist(cv::Ptr<cv::ml::TrainData> &trainData);
 
     int32_t get_image_magic_number() const { return ii.image_magic_number; }
     int32_t get_label_magic_numberr() const { return li.label_magic_number; }

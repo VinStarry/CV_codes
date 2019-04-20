@@ -4,11 +4,8 @@
 
 #include "parse_mnist.h"
 
-bool parse_mnist::get_all_images_from_mnist(std::vector<cv::Mat> &mat_container, std::vector<unsigned char> &lb_container) {
+bool parse_mnist::get_all_images_from_mnist(cv::Ptr<cv::ml::TrainData> &trainData) {
     try {
-        if (!mat_container.empty() || !lb_container.empty()) {
-            throw "Input Container must be empty!";
-        }
         std::fstream image_in, label_in;
         image_in.open(image_path, std::ios::binary | std::ios::in);
         label_in.open(label_path, std::ios::binary | std::ios::in);
@@ -39,28 +36,26 @@ bool parse_mnist::get_all_images_from_mnist(std::vector<cv::Mat> &mat_container,
             throw "Image and label don't match!";
         }
 
-        mat_container.resize(static_cast<unsigned long>(ii.number_of_images));
-        lb_container.resize(static_cast<unsigned long>(li.number_of_labels));
-
+        cv::Mat trainMat(ii.number_of_images, ii.number_of_rows * ii.number_of_cols, CV_32FC1);
+        cv::Mat labelMat(ii.number_of_images, 1, CV_32FC1);
 
         for (auto i = 0; i < ii.number_of_images; i++) {
             unsigned char block[ii.number_of_cols][ii.number_of_rows];
             unsigned char label;
-            image_in.read(reinterpret_cast<char *>(block), sizeof(char) * ii.number_of_cols * ii.number_of_rows);
-            label_in.read(reinterpret_cast<char *>(&label), sizeof(char));
-            cv::Mat Img(ii.number_of_cols, ii.number_of_rows, CV_8UC1);
+            image_in.read(reinterpret_cast<char *>(block), sizeof(unsigned char) * ii.number_of_cols * ii.number_of_rows);
+            label_in.read(reinterpret_cast<char *>(&label), sizeof(unsigned char));
             for (int col = 0; col < ii.number_of_cols; col++) {
                 for (int row = 0; row < ii.number_of_rows; row++) {
-                    Img.at<unsigned char>(col, row) = block[col][row];
+//                    std::cout << static_cast<int>(block[col][row]) << "\t";
+                    trainMat.at<int32_t>(i, col * ii.number_of_rows + row) = static_cast<int32_t>(block[col][row]);
                 }
+//                std::cout << std::endl;
             }
-            mat_container[i] = Img;
-            int32_t reminder = i % 4;
-            if (!high_endian)
-                lb_container[i / 4 * 4 + 3 - reminder] = label;
-            else
-                lb_container[i] = label;
+//            std::cout << "label: " << static_cast<int>(label) << std::endl;
+            labelMat.at<int32_t>(i) = static_cast<int32_t>(label);
         }
+
+        trainData = cv::ml::TrainData::create(trainMat, cv::ml::ROW_SAMPLE, labelMat);
 
         image_in.close();
         label_in.close();

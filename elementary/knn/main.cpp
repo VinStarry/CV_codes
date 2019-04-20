@@ -1,8 +1,4 @@
 #include <iostream>
-#include <string>
-#include <fstream>
-#include <cstdio>
-#include <opencv2/opencv.hpp>
 #include "parse_mnist.h"
 
 using namespace std;
@@ -14,13 +10,13 @@ int main() {
     string test_images = "../mnist/t10k-images.idx3-ubyte";
     string test_labels = "../mnist/t10k-labels.idx1-ubyte";
 
-    int32_t number = 0;
+    /* initilize training data parser */
+    parse_mnist train_parse(training_images, training_labels);
+    Ptr<ml::TrainData> training_set;
+    /* get training image and label sets from files */
+    train_parse.get_all_images_from_mnist(training_set);
 
-    parse_mnist training_set(training_images, training_labels);
-    vector<Mat> vec1;
-    vector<unsigned char> lb1;
-    training_set.get_all_images_from_mnist(vec1, lb1);
-    cout << vec1.size() << endl << lb1.size() << endl;
+
 
     return 0;
 }
