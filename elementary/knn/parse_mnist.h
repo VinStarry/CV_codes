@@ -41,7 +41,8 @@ public:
 
     ~parse_mnist() = default;
 
-    bool get_all_images_from_mnist(cv::Ptr<cv::ml::TrainData> &trainData);
+    bool get_train_images_with_label_from_mnist(cv::Ptr<cv::ml::TrainData> &trainData);
+    bool get_test_images_with_label_from_mnist(cv::Mat &testData, cv::Mat &testLabel);
 
     int32_t get_image_magic_number() const { return ii.image_magic_number; }
     int32_t get_label_magic_numberr() const { return li.label_magic_number; }
