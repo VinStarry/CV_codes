@@ -6,7 +6,6 @@
 #include <fstream>
 #include <opencv2/opencv.hpp>
 #include <opencv2/ml.hpp>
-#include <vector>
 
 struct image_info {
     image_info() = default;
@@ -30,6 +29,7 @@ class parse_mnist {
 public:
     parse_mnist(std::string &image_file, std::string &label_file):
             image_path(image_file), label_path(label_file), ii(), li(){
+        // test whether your machine is big endian
         unsigned short v = 0x0102;
         auto *p = reinterpret_cast<unsigned char *>(&v);
         big_endian = (*p == 0x01);
@@ -47,6 +47,7 @@ public:
     int32_t get_number_of_cols() const { return ii.number_of_cols; }
     int32_t get_number_of_labels() const { return li.number_of_labels; }
 
+    // change little endian integer to big endian integer
     int32_t swapInt32(int32_t value) {
         return ((value & 0x000000FF) << 24) |
                ((value & 0x0000FF00) << 8) |
@@ -57,8 +58,8 @@ public:
 private:
     const std::string image_path;
     const std::string label_path;
-    image_info ii;
-    label_info li;
+    image_info ii;  // information of image set
+    label_info li;  // information of label set
     bool big_endian;
 };
 
