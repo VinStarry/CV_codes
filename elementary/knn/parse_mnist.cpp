@@ -16,14 +16,10 @@ bool parse_mnist::get_all_images_from_mnist(cv::Ptr<cv::ml::TrainData> &trainDat
             throw "Error opening label data set, please check the path!";
         }
 
-        image_in.read(reinterpret_cast<char *>(&ii.image_magic_number), sizeof(int));
-        image_in.read(reinterpret_cast<char *>(&ii.number_of_images), sizeof(int));
-        image_in.read(reinterpret_cast<char *>(&ii.number_of_rows), sizeof(int));
-        image_in.read(reinterpret_cast<char *>(&ii.number_of_cols), sizeof(int));
-        label_in.read(reinterpret_cast<char *>(&li.label_magic_number), sizeof(int));
-        label_in.read(reinterpret_cast<char *>(&li.number_of_labels), sizeof(int));
+        image_in.read(reinterpret_cast<char *>(&ii), sizeof(ii));
+        label_in.read(reinterpret_cast<char *>(&li), sizeof(li));
 
-        if (!high_endian) {
+        if (!big_endian) {
             ii.image_magic_number = swapInt32(ii.image_magic_number);
             ii.number_of_images = swapInt32(ii.number_of_images);
             ii.number_of_rows = swapInt32(ii.number_of_rows);

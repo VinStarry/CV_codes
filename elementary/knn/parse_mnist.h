@@ -36,7 +36,7 @@ public:
             image_path(image_file), label_path(label_file), ii(), li(){
         unsigned short v = 0x0102;
         auto *p = reinterpret_cast<unsigned char *>(&v);
-        high_endian = (*p == 0x01);
+        big_endian = (*p == 0x01);
     }
 
     ~parse_mnist() = default;
@@ -62,7 +62,7 @@ private:
     const std::string label_path;
     image_info ii;
     label_info li;
-    bool high_endian;
+    bool big_endian;
 };
 
 #endif //KNN_PARSE_MNIST_H
