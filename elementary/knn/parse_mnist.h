@@ -1,7 +1,3 @@
-//
-// Created by 永鑫   徐 on 2019-04-19.
-//
-
 #ifndef KNN_PARSE_MNIST_H
 #define KNN_PARSE_MNIST_H
 

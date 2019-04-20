@@ -1,7 +1,3 @@
-//
-// Created by 永鑫   徐 on 2019-04-19.
-//
-
 #include "parse_mnist.h"
 
 bool parse_mnist::get_train_images_with_label_from_mnist(cv::Ptr<cv::ml::TrainData> &trainData) {
