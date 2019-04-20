@@ -1,3 +1,4 @@
+*.xml
 **/cmake-build-debug/
 **/CMakeFiles/
 **/Makefile
