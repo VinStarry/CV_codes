@@ -77,7 +77,7 @@ The declaration is [here](https://github.com/VinStarry/CV_codes/blob/master/elem
 
 **Wrong Case3**
 
-**Predict Label : 9, Actual Label 8**
+**Predict Label : 8, Actual Label 9**
 
 ![Accuracy Rate](../result_graphs/knn_wrongcase_3.jpg)
 
