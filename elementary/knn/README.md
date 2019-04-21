@@ -46,7 +46,7 @@ The declaration is [here](https://github.com/VinStarry/CV_codes/blob/master/elem
 **Here are 3 important tips**
 
 1. MNIST data set is stored in the MSB first (big endian) format used by most non-Intel processors. So if you use intel processor machine, you should read the data stored in big endian mode by little endian mode.
-2. `cv::ml::TrainData::create()` only deal with samples with CV_32F type, while NMIST's pixel is stored in unsigned byte type. (which is CV_8U in OpenCV)
+2. `cv::ml::TrainData::create()` only accepts samples with CV_32F type, while NMIST's pixel is stored in unsigned byte type. (which is CV_8U in OpenCV)
 3. Every image in MNIST should be stored in 1D mode in order to be processed by `cv::Mat`. Since your images are 2D, you will need to convert them to a 1D matrix.
 
 ## Classification Results
