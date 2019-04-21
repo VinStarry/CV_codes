@@ -35,7 +35,7 @@ knn_model->train(training_set, 0); // train this KNN model with training set
 knn_model->findNearest(test_set, knn_model->getDefaultK(), result_set);
 ```
 
-**ATTENTION: ** `result_set` here is a `cv::Mat` with CV_32F type, which means elements in it are with `float` type, rather `int32_t`.
+**ATTENTION:** `result_set` here is a `cv::Mat` with CV_32F type, which means elements in it are with `float` type, rather `int32_t`.
 
 6. Calculate accuracy of the prediction by comparing `testLabel` and `result_set`. (Don't forget to cast if they have different data type)
 
