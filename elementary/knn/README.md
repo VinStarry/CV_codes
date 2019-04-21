@@ -81,3 +81,9 @@ The declaration is [here](https://github.com/VinStarry/CV_codes/blob/master/elem
 
 ![Accuracy Rate](../result_graphs/knn_wrongcase_3.jpg)
 
+
+
+## Reference
+
+https://www.cs.bgu.ac.il/~adsmb182/wiki.files/borak-lecture%20notes.pdf
+

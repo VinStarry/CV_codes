@@ -22,3 +22,5 @@ Contact me @ vinstarry@outlook.com or by issues.
 
 https://opencv.org/opencv-4-0/
 
+https://www.cs.bgu.ac.il/~adsmb182/wiki.files/borak-lecture%20notes.pdf
+
