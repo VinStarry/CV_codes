@@ -1,5 +1,11 @@
 # K-Nearest Neighbor
 
+K-Nearest Neighbor(KNN) is a simple but effective idea method used for both classification and regression.
+
+This little project use KNN to do classification using MNIST data set with OpenCV4.
+
+The results are shown at the end of this article.
+
 ## Key steps
 
 1. Get Training set (including training images and their labels) from MNIST.
