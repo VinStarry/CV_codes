@@ -3,8 +3,8 @@
 bool parse_mnist::get_train_images_with_label_from_mnist(cv::Ptr<cv::ml::TrainData> &trainData) {
     try {
         std::fstream image_in, label_in;
-        image_in.open(image_path, std::ios::binary | std::ios::in);
-        label_in.open(label_path, std::ios::binary | std::ios::in);
+        image_in.open(IMAGE_PATH, std::ios::binary | std::ios::in);
+        label_in.open(LABEL_PATH, std::ios::binary | std::ios::in);
         if (!trainData.empty()) {
             throw "get_train_images_with_label_from_mnist only accept empty train data as input";
         }
@@ -65,8 +65,8 @@ bool parse_mnist::get_train_images_with_label_from_mnist(cv::Ptr<cv::ml::TrainDa
 bool parse_mnist::get_test_images_with_label_from_mnist(cv::Mat &testData, cv::Mat &testLabel) {
     try {
         std::fstream image_in, label_in;
-        image_in.open(image_path, std::ios::binary | std::ios::in);
-        label_in.open(label_path, std::ios::binary | std::ios::in);
+        image_in.open(IMAGE_PATH, std::ios::binary | std::ios::in);
+        label_in.open(LABEL_PATH, std::ios::binary | std::ios::in);
 
         if (!testData.empty() || !testLabel.empty()) {
             throw "get_train_images_with_label_from_mnist only accept empty test data and test label as input";

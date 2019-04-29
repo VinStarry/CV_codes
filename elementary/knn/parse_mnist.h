@@ -28,7 +28,7 @@ struct label_info {
 class parse_mnist {
 public:
     parse_mnist(std::string &image_file, std::string &label_file):
-            image_path(image_file), label_path(label_file), ii(), li(){
+            IMAGE_PATH(image_file), LABEL_PATH(label_file), ii(), li(){
         // test whether your machine is big endian
         unsigned short v = 0x0102;
         auto *p = reinterpret_cast<unsigned char *>(&v);
@@ -56,8 +56,8 @@ public:
     }
 
 private:
-    const std::string image_path;
-    const std::string label_path;
+    const std::string IMAGE_PATH;
+    const std::string LABEL_PATH;
     image_info ii;  // information of image set
     label_info li;  // information of label set
     bool big_endian;
