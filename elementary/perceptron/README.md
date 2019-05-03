@@ -66,3 +66,10 @@ The intermediate process of finding the boundary is recorded in the following fi
 ![perceptron_result_im_12](../result_graphs/perceptron_result_im_12.png)
 
 ![perceptron_result_im_13](../result_graphs/perceptron_result_im_13.png)
+
+### Final Result
+
+**steps = 13**
+**weight:  [0.79 1.08]**
+**bias:  -1.0**
+
