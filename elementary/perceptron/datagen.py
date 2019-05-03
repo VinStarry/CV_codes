@@ -1,27 +1,21 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import random
 
-def pseudo_random():
-    val_x = random.random()
-    val_y = random.random()
-    while True:
-        if (val_x + val_y <= 1.1 and val_x + val_y >= 0.9):
-            val_x = random.random()
-            val_y = random.random()
-        else:
-            break
-    return val_x, val_y
-
-def generate_random_array(x_array, y_array):
-    for index in range(x_array.size):
-        x_array[index], y_array[index] = pseudo_random()
-
+'''
+@:function data_gen
+@:param number : how many samples to create
+  create data set (2D-points set) that each for each point P_i(xi, yi),
+  0 <= xi <= 1, 0 <= yi <= 1
+  if xi + yi < 1 then the tag of P_i is 0
+  otherwise is 1 
+@:return: none
+@:raise
+'''
 def data_gen(number):
     # generate random arrays, each element is a float number between 0 and 1
-    x_array = np.zeros(number, dtype = float)
-    y_array = np.zeros(number, dtype = float)
-    generate_random_array(x_array, y_array)
+    x_array = np.random.rand(number)
+    y_array = np.random.rand(number)
+
     color_array = np.zeros(number, dtype = np.int)
 
     # tag the points (use x + y = 1 as the boundary)
