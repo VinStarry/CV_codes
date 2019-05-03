@@ -5,9 +5,13 @@ The 2D-data (points) processed must be linear separable for perceptron. So in th
 
 ## Data Set Generation
 
-Because the data set must be linear separable. We randomly generated data $(x, y)$ point sets, where $0 ≤ x ≤ 1$ and $0 ≤ y ≤ 1$. Then we use $x + y = 1$ as the boundary to separate the data set.
+Because the data set must be linear separable. We randomly generated data $(x, y)$ point sets, where $0 ≤ x ≤ 1$ and $0 ≤ y ≤ 1$. Then we use $x + y = 1$ as the boundary to separate the data set.  
 
-The result is shown below:
+#### Attention
+
+In order to reduce the steps to find the line which spilt two kinds of points apart, we use a pseudo-random algorithm to make all points have a certain distance from the boundary.
+
+The result is shown below (Boundary is $x + y = 1$) :
 
 ![Data_set](../result_graphs/perceptron_datagen.jpg)
 
