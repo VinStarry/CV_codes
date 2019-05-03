@@ -12,19 +12,19 @@ The result is shown below (Boundary is $x + y = 1$) :
 ![Data_set](../result_graphs/perceptron_datagen.jpg)
 
 # Algorithm
-``` pseudocode
+``` C
 weight = (0, 0)
 bias = 0
 while (True)
-		misclassified_count = 0
-		for (x_i, y_i in D)
-				if (y_i * transpose(weight) * x_i <= 0)	// misclassified
-						weight = weight + y_i * x_i
-						misclassified_count++
-				end if
-		end for
-		if (m = 0)	break;
-end while
+	misclassified_count = 0
+	for (x_i, y_i in D)
+		if (y_i * transpose(weight) * x_i <= 0)	// misclassified
+			weight = weight + y_i * x_i
+			misclassified_count++
+		endIf
+	endFor
+	if (m = 0)	break;
+endWhile
 ```
 
 # Result
