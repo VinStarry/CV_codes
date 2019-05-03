@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import random
 
-def psudo_random():
+def pseudo_random():
     val_x = random.random()
     val_y = random.random()
     while True:
@@ -15,7 +15,7 @@ def psudo_random():
 
 def generate_random_array(x_array, y_array):
     for index in range(x_array.size):
-        x_array[index], y_array[index] = psudo_random()
+        x_array[index], y_array[index] = pseudo_random()
 
 def data_gen(number):
     # generate random arrays, each element is a float number between 0 and 1
